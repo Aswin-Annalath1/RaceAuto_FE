@@ -7,7 +7,7 @@ const navigate = useNavigate()
 const handleRegister = async(e) => {
   e.preventDefault()
   //Here datas are posted to the routed Db...
-  fetch('https://todo-wu1c.onrender.com/users/register',{
+  fetch('https://raceauto-be.onrender.com/users/register',{
     method:'POST',
     headers:{'Content-Type':'application/json'},
     body:JSON.stringify({

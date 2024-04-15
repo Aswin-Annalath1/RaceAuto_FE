@@ -15,7 +15,7 @@ const Todolistmain = () => {
   
 //Called for Api call
     useEffect(() => {
-      fetch("https://todo-wu1c.onrender.com/todos/"+userid)
+      fetch("https://raceauto-be.onrender.com/todos/"+userid)
       .then((res) => {return res.json()})
       .then((data) => {(data)
   
@@ -42,7 +42,7 @@ const Todolistmain = () => {
       let index = taskList.findIndex((obj) => obj.id === i); //here checking task.id == obj.id
       if (index > -1) {
       //This is removal from BE
-        fetch(`https://todo-wu1c.onrender.com/todos/${userid}/${taskList[index]._id}`, {
+        fetch(`https://raceauto-be.onrender.com/todos/${userid}/${taskList[index]._id}`, {
           method: "DELETE",
           headers: {"Content-Type": "application/json"}})
           .then((res) => {return res.json()})  
@@ -66,7 +66,7 @@ const Todolistmain = () => {
     };
 //Here wew are doing logout...
   const handlelogout = async()=>{
-    fetch('https://todo-wu1c.onrender.com/users/logout',{
+    fetch('https://raceauto-be.onrender.com/users/logout',{
       method:'GET',
       headers:{'Content-Type':'application/json'},
     })
@@ -79,7 +79,7 @@ const Todolistmain = () => {
   const editStatus = (i) => {
     let index = taskList.findIndex((obj) => obj.id === i);
     if (index > -1) {
-    fetch(`https://todo-wu1c.onrender.com/todos/${userid}/status/${taskList[index]._id}`,{
+    fetch(`https://raceauto-be.onrender.com/todos/${userid}/status/${taskList[index]._id}`,{
       //PUT Method help again to edit by admin if required..
       method: "PUT",
       headers: {"Content-Type": "application/json"},
