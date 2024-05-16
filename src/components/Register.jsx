@@ -7,43 +7,19 @@ const navigate = useNavigate()
 const handleRegister = async(e) => {
   e.preventDefault()
   //Here datas are posted to the routed Db...
-  fetch('https://raceauto-be.onrender.com/users/register', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ username, email, password }),
+  fetch('https://raceauto-be.onrender.com/users/register',{
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({
+      username:document.getElementById('username').value,
+      email:document.getElementById('email').value,
+      password:document.getElementById('password').value
     })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data._id) {
-          // Registration successful, send verification email
-          fetch('https://raceauto-be.onrender.com/users/send-verification-email', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ userId: data._id, email }),
-          })
-            .then((res) => res.json())
-            .then((verificationData) => {
-              if (verificationData.success) {
-                // Email sent successfully, navigate to success page
-                alert('You have been verified')
-                navigate("/todolistmain/"+data._id);
-              } else {
-                // Handle email sending error
-                console.error("Failed to send verification email");
-                alert('You email cant be found')
-              }
-            })
-            .catch((error) => {
-              console.error("Error sending verification email:", error);
-            });
-        } else {
-          // Handle registration error
-          console.error("Registration failed");
-        }
-      })
-      .catch((error) => {
-        console.error("Error during registration:", error);
-      });}
+  }).then(res=>res.json())
+  //Here we are trying to direct the user to his datas...(navigating..)
+  .then(data => {(data._id)
+  navigate("/todolistmain/"+data._id)
+  })}
   return (
     <div id="app" className="min-w-[400px] w-1/2 mx-auto mt-40">
     <div className="max-w-4xl bg-gray-500 p-4 rounded-lg shadow-lg hover:bg-gray-800">
